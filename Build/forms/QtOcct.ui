@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtOcctClass</class>
+ <widget class="QMainWindow" name="QtOcctClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AMPL Toolpaths</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../resources/QtOcct.qrc">
+    <normaloff>:/QtOcct/NU_N_Logo.png</normaloff>:/QtOcct/NU_N_Logo.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QOpenGLWidget" name="openGLWidget">
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>102</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuImport_CAD_Surface">
+     <property name="title">
+      <string>Import CAD Surface</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources/QtOcct.qrc">
+       <normaloff>:/QtOcct/import-file-icon.png</normaloff>:/QtOcct/import-file-icon.png</iconset>
+     </property>
+     <addaction name="actionImport_IGS"/>
+     <addaction name="actionImport_STEP"/>
+    </widget>
+    <widget class="QMenu" name="menuExport_CAD_Surface">
+     <property name="title">
+      <string>Export CAD Surface</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources/QtOcct.qrc">
+       <normaloff>:/QtOcct/export-file-icon.png</normaloff>:/QtOcct/export-file-icon.png</iconset>
+     </property>
+     <addaction name="actionExport_to_IGS"/>
+     <addaction name="actionExport_STEP"/>
+    </widget>
+    <addaction name="actionLoad_AMPL_Toolpath"/>
+    <addaction name="actionSave_AMPL_Toolpath"/>
+    <addaction name="actionImport_Contact_Points"/>
+    <addaction name="actionExport_Toolpath_to_CSV"/>
+    <addaction name="separator"/>
+    <addaction name="menuImport_CAD_Surface"/>
+    <addaction name="menuExport_CAD_Surface"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuToolpath">
+    <property name="title">
+     <string>Toolpath</string>
+    </property>
+    <widget class="QMenu" name="menuConvert_to_Machine_Code">
+     <property name="title">
+      <string>Convert to Machine Code</string>
+     </property>
+     <addaction name="actionNU_Gen_1_DSIF_Machine"/>
+     <addaction name="actionNU_Gen_2_DSIF_Machine"/>
+    </widget>
+    <widget class="QMenu" name="menuCreate_Tool_Tip_Points">
+     <property name="title">
+      <string>Calculate Tool Tip Points</string>
+     </property>
+     <addaction name="actionToolTipSingleFeaturePart"/>
+    </widget>
+    <widget class="QMenu" name="menuGenerate_Contact_Points">
+     <property name="title">
+      <string>Generate Contact Points</string>
+     </property>
+     <addaction name="actionContactPntSingleFeature"/>
+    </widget>
+    <addaction name="menuGenerate_Contact_Points"/>
+    <addaction name="separator"/>
+    <addaction name="menuCreate_Tool_Tip_Points"/>
+    <addaction name="separator"/>
+    <addaction name="menuConvert_to_Machine_Code"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHotkeys"/>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionDev_Sandbox"/>
+   </widget>
+   <widget class="QMenu" name="menuDemo">
+    <property name="title">
+     <string>Part</string>
+    </property>
+    <widget class="QMenu" name="menuDemo_Parts">
+     <property name="title">
+      <string>Demo Shapes</string>
+     </property>
+     <addaction name="actionBox_Demo"/>
+     <addaction name="actionSphere_Demo"/>
+     <addaction name="actionMake_Bottle"/>
+    </widget>
+    <widget class="QMenu" name="menuMove_Part">
+     <property name="title">
+      <string>Move Part</string>
+     </property>
+     <addaction name="actionTranslate_Part"/>
+     <addaction name="actionRotate_Part"/>
+     <addaction name="actionScale_Part"/>
+    </widget>
+    <widget class="QMenu" name="menuISF_Part_Library">
+     <property name="title">
+      <string>ISF Part Library</string>
+     </property>
+     <addaction name="actionTruncated_Cone"/>
+     <addaction name="actionTruncated_Pyramid"/>
+     <addaction name="actionArc_Based_Funnel"/>
+    </widget>
+    <addaction name="menuISF_Part_Library"/>
+    <addaction name="separator"/>
+    <addaction name="menuDemo_Parts"/>
+    <addaction name="separator"/>
+    <addaction name="menuMove_Part"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionFit_All"/>
+    <addaction name="actionReset_View"/>
+    <addaction name="separator"/>
+    <addaction name="actionXY_View"/>
+    <addaction name="actionYZ_View"/>
+    <addaction name="actionZX_View"/>
+    <addaction name="actionIsometric"/>
+    <addaction name="separator"/>
+    <addaction name="actionPan"/>
+    <addaction name="actionRotate"/>
+    <addaction name="actionZoom"/>
+    <addaction name="separator"/>
+    <addaction name="actionShaded"/>
+    <addaction name="actionWireframe"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QMenu" name="menuBackground_Color">
+     <property name="title">
+      <string>Background Color</string>
+     </property>
+     <addaction name="actionBackgroundBlack"/>
+     <addaction name="actionBackgroundLight_Blue"/>
+     <addaction name="actionBackgroundWhite"/>
+    </widget>
+    <addaction name="menuBackground_Color"/>
+    <addaction name="separator"/>
+    <addaction name="actionOptions"/>
+   </widget>
+   <widget class="QMenu" name="menuPost_Tools">
+    <property name="title">
+     <string>Post Tools</string>
+    </property>
+    <addaction name="actionExtract_Cross_Section"/>
+    <addaction name="actionSurface_Deviation_Map"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuDemo"/>
+   <addaction name="menuToolpath"/>
+   <addaction name="menuPost_Tools"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionFit_All"/>
+   <addaction name="actionReset_View"/>
+   <addaction name="separator"/>
+   <addaction name="actionXY_View"/>
+   <addaction name="actionYZ_View"/>
+   <addaction name="actionZX_View"/>
+   <addaction name="actionIsometric"/>
+   <addaction name="separator"/>
+   <addaction name="actionPan"/>
+   <addaction name="actionRotate"/>
+   <addaction name="actionZoom"/>
+   <addaction name="separator"/>
+   <addaction name="actionRot_X"/>
+   <addaction name="actionRot_Y"/>
+   <addaction name="actionRot_Z"/>
+   <addaction name="separator"/>
+   <addaction name="actionShaded"/>
+   <addaction name="actionWireframe"/>
+   <addaction name="actionClippingPlane"/>
+   <addaction name="actionVisibleActivePart"/>
+   <addaction name="actionOrigin_Visible"/>
+   <addaction name="actionVisibleToolpath"/>
+   <addaction name="separator"/>
+   <addaction name="actionHotkeys"/>
+   <addaction name="actionDev_Sandbox"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/exit.png</normaloff>:/QtOcct/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>Show version and development information about AMPL Toolpaths</string>
+   </property>
+   <property name="statusTip">
+    <string>Show version and development information about AMPL Toolpaths</string>
+   </property>
+  </action>
+  <action name="actionMake_Bottle">
+   <property name="text">
+    <string>Bottle Demo</string>
+   </property>
+   <property name="toolTip">
+    <string>Make a thick-walled bottle with threads</string>
+   </property>
+   <property name="statusTip">
+    <string>Make a thick-walled bottle with threads</string>
+   </property>
+  </action>
+  <action name="actionXY_View">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/XY_View_Icon24x24.png</normaloff>:/QtOcct/XY_View_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>XY-View</string>
+   </property>
+   <property name="toolTip">
+    <string>View scene normal to the XY-plane</string>
+   </property>
+   <property name="statusTip">
+    <string>View scene normal to the XY-plane</string>
+   </property>
+  </action>
+  <action name="actionYZ_View">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/YZ_View_Icon24x24.png</normaloff>:/QtOcct/YZ_View_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>YZ-View</string>
+   </property>
+   <property name="toolTip">
+    <string>View scene normal to the YZ-plane</string>
+   </property>
+   <property name="statusTip">
+    <string>View scene normal to the YZ-plane</string>
+   </property>
+  </action>
+  <action name="actionZX_View">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/XZ_View_Icon24x24.png</normaloff>:/QtOcct/XZ_View_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>XZ-View</string>
+   </property>
+   <property name="toolTip">
+    <string>View scene normal to the XZ-plane</string>
+   </property>
+   <property name="statusTip">
+    <string>View scene normal to the XZ-plane</string>
+   </property>
+  </action>
+  <action name="actionIsometric">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/Isometric_View_Icon24x24.png</normaloff>:/QtOcct/Isometric_View_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Isometric</string>
+   </property>
+   <property name="toolTip">
+    <string>View the scene along the [1, 1, 1] vector</string>
+   </property>
+   <property name="statusTip">
+    <string>View the scene along the [1, 1, 1] vector</string>
+   </property>
+  </action>
+  <action name="actionPan">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/PanView_Icon25x25.png</normaloff>:/QtOcct/PanView_Icon25x25.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pan</string>
+   </property>
+   <property name="toolTip">
+    <string>Dynamic translation of the scene</string>
+   </property>
+   <property name="statusTip">
+    <string>Dynamic translation of the scene</string>
+   </property>
+  </action>
+  <action name="actionRotate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/RotateView_Icon50x50.png</normaloff>:/QtOcct/RotateView_Icon50x50.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate</string>
+   </property>
+   <property name="toolTip">
+    <string>Dynamic rotation of the scene</string>
+   </property>
+   <property name="statusTip">
+    <string>Dynamic rotation of the scene</string>
+   </property>
+  </action>
+  <action name="actionZoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/ZoomView_Icon50x50.png</normaloff>:/QtOcct/ZoomView_Icon50x50.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom</string>
+   </property>
+   <property name="toolTip">
+    <string>Dynamic zooming of the scene</string>
+   </property>
+   <property name="statusTip">
+    <string>Dynamic zooming of the scene</string>
+   </property>
+  </action>
+  <action name="actionShaded">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/Shaded_Icon48x48.png</normaloff>:/QtOcct/Shaded_Icon48x48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Shaded</string>
+   </property>
+   <property name="toolTip">
+    <string>Change shape visualization mode to shaded</string>
+   </property>
+   <property name="statusTip">
+    <string>Change shape visualization mode to shaded</string>
+   </property>
+  </action>
+  <action name="actionWireframe">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/WireFrame_Icon48x48.png</normaloff>:/QtOcct/WireFrame_Icon48x48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Wireframe</string>
+   </property>
+   <property name="toolTip">
+    <string>Change shape visualization mode to wireframe</string>
+   </property>
+   <property name="statusTip">
+    <string>Change shape visualization mode to wireframe</string>
+   </property>
+  </action>
+  <action name="actionFit_All">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/FitAll_Icon24x24.png</normaloff>:/QtOcct/FitAll_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fit All</string>
+   </property>
+   <property name="toolTip">
+    <string>Auto-fit whole scene in the viewer</string>
+   </property>
+   <property name="statusTip">
+    <string>Auto-fit whole scene in the viewer</string>
+   </property>
+  </action>
+  <action name="actionReset_View">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/ResetView_Icon24x24.png</normaloff>:/QtOcct/ResetView_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reset View</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset the view to the default orientation</string>
+   </property>
+   <property name="statusTip">
+    <string>Reset the view to the default orientation</string>
+   </property>
+  </action>
+  <action name="actionRot_X">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/RotX_Icon24x24.png</normaloff>:/QtOcct/RotX_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rot. X</string>
+   </property>
+   <property name="toolTip">
+    <string>Use left/right arrow keys to rotate about the x-axis</string>
+   </property>
+   <property name="statusTip">
+    <string>Use left/right arrow keys to rotate about the x-axis</string>
+   </property>
+   <property name="shortcut">
+    <string>X</string>
+   </property>
+  </action>
+  <action name="actionRot_Y">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/RotY_Icon24x24.png</normaloff>:/QtOcct/RotY_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rot. Y</string>
+   </property>
+   <property name="toolTip">
+    <string>Use left/right arrow keys to rotate about the y-axis</string>
+   </property>
+   <property name="statusTip">
+    <string>Use left/right arrow keys to rotate about the y-axis</string>
+   </property>
+   <property name="shortcut">
+    <string>Y</string>
+   </property>
+  </action>
+  <action name="actionRot_Z">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/RotZ_Icon24x24.png</normaloff>:/QtOcct/RotZ_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rot. Z</string>
+   </property>
+   <property name="toolTip">
+    <string>Use left/right arrow keys to rotate about the z-axis</string>
+   </property>
+   <property name="statusTip">
+    <string>Use left/right arrow keys to rotate about the z-axis</string>
+   </property>
+   <property name="shortcut">
+    <string>Z</string>
+   </property>
+  </action>
+  <action name="actionTruncated_Cone">
+   <property name="text">
+    <string>Truncated Cone</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate a user-defined truncated cone</string>
+   </property>
+   <property name="statusTip">
+    <string>Generate a user-defined truncated cone</string>
+   </property>
+  </action>
+  <action name="actionTruncated_Pyramid">
+   <property name="text">
+    <string>Truncated Pyramid</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate a user-defined truncated pyramid</string>
+   </property>
+   <property name="statusTip">
+    <string>Generate a user-defined truncated pyramid</string>
+   </property>
+  </action>
+  <action name="actionArc_Based_Funnel">
+   <property name="text">
+    <string>Arc-Based Funnel</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate a user-defined funnel</string>
+   </property>
+   <property name="statusTip">
+    <string>Generate a user-defined funnel</string>
+   </property>
+  </action>
+  <action name="actionImport_IGS">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/import-file-icon.png</normaloff>:/QtOcct/import-file-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import IGS</string>
+   </property>
+   <property name="toolTip">
+    <string>Import an IGS file. Part must be suitable for toolpath generation.</string>
+   </property>
+   <property name="statusTip">
+    <string>Import an IGS file. Part must be suitable for toolpath generation.</string>
+   </property>
+  </action>
+  <action name="actionBox_Demo">
+   <property name="text">
+    <string>Box Demo</string>
+   </property>
+   <property name="toolTip">
+    <string>Make a solid cube</string>
+   </property>
+   <property name="statusTip">
+    <string>Make a solid cube</string>
+   </property>
+  </action>
+  <action name="actionSphere_Demo">
+   <property name="text">
+    <string>Sphere Demo</string>
+   </property>
+   <property name="toolTip">
+    <string>Make a solid sphere</string>
+   </property>
+   <property name="statusTip">
+    <string>Make a solid sphere</string>
+   </property>
+  </action>
+  <action name="actionTranslate_Part">
+   <property name="text">
+    <string>Translate Part</string>
+   </property>
+   <property name="toolTip">
+    <string>Translate active part</string>
+   </property>
+   <property name="statusTip">
+    <string>Translate active part</string>
+   </property>
+  </action>
+  <action name="actionRotate_Part">
+   <property name="text">
+    <string>Rotate Part</string>
+   </property>
+   <property name="toolTip">
+    <string>Rotate active part</string>
+   </property>
+   <property name="statusTip">
+    <string>Rotate active part</string>
+   </property>
+  </action>
+  <action name="actionSPIF">
+   <property name="text">
+    <string>SPIF</string>
+   </property>
+   <property name="toolTip">
+    <string>From contact points, calculate SPIF tool tip points</string>
+   </property>
+   <property name="statusTip">
+    <string>From contact points, calculate SPIF tool tip points</string>
+   </property>
+  </action>
+  <action name="actionTPIF">
+   <property name="text">
+    <string>TPIF</string>
+   </property>
+   <property name="toolTip">
+    <string>From contact points, calculate TPIF tool tip points</string>
+   </property>
+   <property name="statusTip">
+    <string>From contact points, calculate TPIF tool tip points</string>
+   </property>
+  </action>
+  <action name="actionDSIF">
+   <property name="text">
+    <string>DSIF</string>
+   </property>
+   <property name="toolTip">
+    <string>From contact points, calculate DSIF tool tip points</string>
+   </property>
+   <property name="statusTip">
+    <string>From contact points, calculate DSIF tool tip points</string>
+   </property>
+  </action>
+  <action name="actionNU_Gen_1_DSIF_Machine">
+   <property name="text">
+    <string>NU Gen. 1 DSIF Machine</string>
+   </property>
+   <property name="toolTip">
+    <string>Convert tool tip points into machine code for NU's Gen. 1 DSIF Machine</string>
+   </property>
+   <property name="statusTip">
+    <string>Convert tool tip points into machine code for NU's Gen. 1 DSIF Machine</string>
+   </property>
+  </action>
+  <action name="actionNU_Gen_2_DSIF_Machine">
+   <property name="text">
+    <string>NU Gen. 2 Tri-Pyram. DSIF Machine</string>
+   </property>
+   <property name="toolTip">
+    <string>Convert tool tip points into machine code for NU's Gen. 2 Tri-Pyram. DSIF Machine</string>
+   </property>
+   <property name="statusTip">
+    <string>Convert tool tip points into machine code for NU's Gen. 2 Tri-Pyram. DSIF Machine</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/gear_Icon24x24.png</normaloff>:/QtOcct/gear_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Options</string>
+   </property>
+   <property name="toolTip">
+    <string>Change settings in viewer updates and input/output buffers</string>
+   </property>
+   <property name="statusTip">
+    <string>Change settings in viewer updates and input/output buffers</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionBackgroundBlack">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/black_Color_icon24x24.png</normaloff>:/QtOcct/black_Color_icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Black</string>
+   </property>
+   <property name="toolTip">
+    <string>Change background color to black</string>
+   </property>
+   <property name="statusTip">
+    <string>Change background color to black</string>
+   </property>
+  </action>
+  <action name="actionBackgroundLight_Blue">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/skyBlue_Color_icon24x24.png</normaloff>:/QtOcct/skyBlue_Color_icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sky Blue</string>
+   </property>
+   <property name="toolTip">
+    <string>Change background color to sky blue</string>
+   </property>
+   <property name="statusTip">
+    <string>Change background color to sky blue</string>
+   </property>
+  </action>
+  <action name="actionBackgroundWhite">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/white_Color_icon24x24.png</normaloff>:/QtOcct/white_Color_icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>White</string>
+   </property>
+   <property name="toolTip">
+    <string>Change background color to white</string>
+   </property>
+   <property name="statusTip">
+    <string>Change background color to white</string>
+   </property>
+  </action>
+  <action name="actionScale_Part">
+   <property name="text">
+    <string>Scale Part</string>
+   </property>
+   <property name="toolTip">
+    <string>Scale active part</string>
+   </property>
+   <property name="statusTip">
+    <string>Scale active part</string>
+   </property>
+  </action>
+  <action name="actionExport_to_IGS">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/export-file-icon.png</normaloff>:/QtOcct/export-file-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export to IGS</string>
+   </property>
+   <property name="toolTip">
+    <string>Export current part to an IGS file</string>
+   </property>
+   <property name="statusTip">
+    <string>Export current part to an IGS file</string>
+   </property>
+  </action>
+  <action name="actionHotkeys">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/about_Icon24x24.png</normaloff>:/QtOcct/about_Icon24x24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hotkeys</string>
+   </property>
+   <property name="toolTip">
+    <string>Shows useful keyboard short cuts</string>
+   </property>
+   <property name="statusTip">
+    <string>Shows useful keyboard short cuts</string>
+   </property>
+  </action>
+  <action name="actionExtract_Cross_Section">
+   <property name="text">
+    <string>Extract Cross Section</string>
+   </property>
+  </action>
+  <action name="actionSurface_Deviation_Map">
+   <property name="text">
+    <string>Two-Surface Deviation Map</string>
+   </property>
+  </action>
+  <action name="actionOrigin_Visible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/VisibleOrigin_48x48.png</normaloff>:/QtOcct/VisibleOrigin_48x48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Origin Visible</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggles the visibility of the origin</string>
+   </property>
+   <property name="statusTip">
+    <string>Toggles the visibility of the origin</string>
+   </property>
+  </action>
+  <action name="actionLoad_AMPL_Toolpath">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/fileopen.png</normaloff>:/QtOcct/fileopen.png</iconset>
+   </property>
+   <property name="text">
+    <string>Load AMPL Toolpath</string>
+   </property>
+  </action>
+  <action name="actionSave_AMPL_Toolpath">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/filesave.png</normaloff>:/QtOcct/filesave.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save AMPL Toolpath</string>
+   </property>
+  </action>
+  <action name="actionExport_Toolpath_to_CSV">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/export-csv-file.png</normaloff>:/QtOcct/export-csv-file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export Toolpath to CSV</string>
+   </property>
+  </action>
+  <action name="actionContactPntSingleFeature">
+   <property name="text">
+    <string>Single Feature Part</string>
+   </property>
+  </action>
+  <action name="actionToolTipSingleFeaturePart">
+   <property name="text">
+    <string>Single Feature Part</string>
+   </property>
+  </action>
+  <action name="actionDev_Sandbox">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Dev. Sandbox</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionVisibleToolpath">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/VisibleToolpath48x48.png</normaloff>:/QtOcct/VisibleToolpath48x48.png</iconset>
+   </property>
+   <property name="text">
+    <string>actionVisibleToolpath</string>
+   </property>
+   <property name="toolTip">
+    <string>Change the options related to visualizing the active toolpath</string>
+   </property>
+   <property name="statusTip">
+    <string>Change the options related to visualizing the active toolpath</string>
+   </property>
+  </action>
+  <action name="actionVisibleActivePart">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/VisibleActivePart48x48.png</normaloff>:/QtOcct/VisibleActivePart48x48.png</iconset>
+   </property>
+   <property name="text">
+    <string>visibleActivePart</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggle the visibility of the current part</string>
+   </property>
+   <property name="statusTip">
+    <string>Toggle the visibility of the current part</string>
+   </property>
+  </action>
+  <action name="actionImport_STEP">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/import-file-icon.png</normaloff>:/QtOcct/import-file-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import STEP</string>
+   </property>
+   <property name="toolTip">
+    <string>Import an STEP file using standard AP214. Part must be suitable for toolpath generation.</string>
+   </property>
+   <property name="statusTip">
+    <string>Import an STEP file using standard AP214. Part must be suitable for toolpath generation.</string>
+   </property>
+  </action>
+  <action name="actionExport_STEP">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/export-file-icon.png</normaloff>:/QtOcct/export-file-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export STEP</string>
+   </property>
+   <property name="toolTip">
+    <string>Export current part to an STEP file using standard AP214</string>
+   </property>
+   <property name="statusTip">
+    <string>Export current part to an STEP file using standard AP214</string>
+   </property>
+  </action>
+  <action name="actionClippingPlane">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/clippingPlaneIcon_48x48.png</normaloff>:/QtOcct/clippingPlaneIcon_48x48.png</iconset>
+   </property>
+   <property name="text">
+    <string>ClippingPlane</string>
+   </property>
+   <property name="toolTip">
+    <string>Define a clipping plane</string>
+   </property>
+   <property name="statusTip">
+    <string>Define a clipping plane</string>
+   </property>
+  </action>
+  <action name="actionImport_Contact_Points">
+   <property name="icon">
+    <iconset resource="../resources/QtOcct.qrc">
+     <normaloff>:/QtOcct/import-csv-file.png</normaloff>:/QtOcct/import-csv-file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import Contact Points</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../resources/QtOcct.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>QtOcctClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

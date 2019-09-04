@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>surfaceNormalHelpDialog2</class>
+ <widget class="QDialog" name="surfaceNormalHelpDialog2">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1298</width>
+    <height>738</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Expected Import Definitions</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../resources/ToolpathHelpPics/toolpathHelpResources.qrc">:/ToolpathHelpPics/ContactPnts_AssumedNormalDirectionHelp.png</pixmap>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../resources/ToolpathHelpPics/toolpathHelpResources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

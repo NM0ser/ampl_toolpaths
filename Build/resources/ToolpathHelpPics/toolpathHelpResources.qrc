@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="ToolpathHelpPics">
+    <file>ContactPnts_FormatHelp.png</file>
+    <file>ContactPnts_AssumedNormalDirectionHelp.png</file>
+    <file>SPIF_vs_TPIF_vs_DSIF.png</file>
+    <file>toolpathParametersHelp.png</file>
+    <file>TopBotToolDefintionsHelp.png</file>
+    <file>FirstTimeUserHelp.png</file>
+  </qresource>
+</RCC>

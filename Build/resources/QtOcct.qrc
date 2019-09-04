@@ -1,0 +1,52 @@
+<RCC>
+  <qresource prefix="QtOcct">
+    <file>import-csv-file.png</file>
+    <file>clippingPlaneIcon_48x48.png</file>
+    <file>VisibleActivePart48x48.png</file>
+    <file>VisibleToolpath48x48.png</file>
+    <file>export-csv-file.png</file>
+    <file>export-file-icon.png</file>
+    <file>import-file-icon.png</file>
+    <file>VisibleOrigin_48x48.png</file>
+    <file>about_Icon24x24.png</file>
+    <file>aboutIconLarge.png</file>
+    <file>all -rrow-keys-icon.png</file>
+    <file>black_Color_icon24x24.png</file>
+    <file>exit.png</file>
+    <file>fileopen.png</file>
+    <file>filesave.png</file>
+    <file>FitAll_Icon24x24.png</file>
+    <file>gear_Icon24x24.png</file>
+    <file>gearIcon_Large.png</file>
+    <file>green-plus-sign.png</file>
+    <file>hotkeysIcon_24x24.png</file>
+    <file>hotkeysIcon_Large.png</file>
+    <file>Isometric_View_Icon24x24.png</file>
+    <file>keyboardChangeRotAxes_300x100.png</file>
+    <file>keyboardPan_300x100.png</file>
+    <file>keyboardRotate_300x100.png</file>
+    <file>keyboardZoom_300x100.png</file>
+    <file>mouseKeyPan_200x200.png</file>
+    <file>mouseKeyRotate_200x200.png</file>
+    <file>mouseKeyZoom_200x200.png</file>
+    <file>NU_N_Logo.png</file>
+    <file>PanView_Icon25x25.png</file>
+    <file>ResetView_Icon24x24.png</file>
+    <file>RotateView_Icon50x50.png</file>
+    <file>RotX_Icon24x24.png</file>
+    <file>RotX_Large.png</file>
+    <file>RotY_Icon24x24.png</file>
+    <file>RotY_Large.png</file>
+    <file>RotZ_Icon24x24.png</file>
+    <file>RotZ_Large.png</file>
+    <file>Shaded_Icon48x48.png</file>
+    <file>skyBlue_Color_icon24x24.png</file>
+    <file>up-arrow-green.png</file>
+    <file>white_Color_icon24x24.png</file>
+    <file>WireFrame_Icon48x48.png</file>
+    <file>XY_View_Icon24x24.png</file>
+    <file>XZ_View_Icon24x24.png</file>
+    <file>YZ_View_Icon24x24.png</file>
+    <file>ZoomView_Icon50x50.png</file>
+  </qresource>
+</RCC>
